@@ -1,0 +1,195 @@
+<!-- PAGE 3: INVENTORY (EXACT RECREATION OF SCREENSHOT 214348) -->
+              <div id="hesabdarViewInventory" class="hesabdar-page-view hidden space-y-6" dir="rtl">
+                <!-- 4 Top Cards (RTL Order: Variety, Total Count, Total Value, Low Stock) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <!-- Right: Variety -->
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-xs text-slate-500 block mb-1">تنوع اقلام انبار</span>
+                    <span id="invVarietyCount" class="text-xl font-bold text-slate-900 font-en">۸ قلم کالا</span>
+                  </div>
+                  <!-- 2nd Right: Count -->
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-xs text-slate-500 block mb-1">کل موجودی شمارشی</span>
+                    <span id="invTotalCount" class="text-xl font-bold text-blue-600 font-en">۷۲ واحد</span>
+                  </div>
+                  <!-- 3rd Right: Value -->
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-xs text-slate-500 block mb-1">ارزش کل خرید انبار</span>
+                    <span class="text-xl font-bold text-teal-600 font-en">۵۸۴,۳۰۰,۰۰۰ تومان</span>
+                  </div>
+                  <!-- Far Left: Low Stock -->
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-xs text-slate-500 block mb-1">هشدار کمبود موجودی</span>
+                    <span id="invLowStockCount" class="text-xl font-bold text-rose-500 font-en">۲ کالا</span>
+                  </div>
+                </div>
+
+                <!-- Action Toolbar: Search on RIGHT, Interactive Controls on LEFT -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <!-- RIGHT: Search Bar -->
+                  <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    <input type="text" id="inventorySearchInput" onkeyup="filterHesabdarTable('hesabdarInventoryTableBody', this.value)" placeholder="جستجو در نام کالا، کد یا دسته‌بندی..." class="w-full bg-white border border-slate-200 rounded-2xl py-2.5 pr-9 pl-4 text-xs text-slate-700 shadow-sm focus:outline-none focus:border-cyan-500 text-right">
+                  </div>
+
+                  <!-- LEFT: Action Controls & Category Dropdown -->
+                  <div class="flex flex-wrap items-center gap-3">
+                    <select id="invCategorySelect" onchange="filterHesabdarCategory(this.value)" class="bg-white border border-slate-200 text-xs text-slate-700 rounded-2xl px-4 py-2.5 shadow-sm focus:outline-none cursor-pointer">
+                      <option value="all">همه دسته‌بندی‌ها</option>
+                      <option value="لپ‌تاپ">لپ‌تاپ و اولترابوک</option>
+                      <option value="نمایشگر">نمایشگر و مانیتور</option>
+                      <option value="جانبی">لوازم جانبی</option>
+                      <option value="قطعات">قطعات و حافظه</option>
+                      <option value="شبکه">تجهیزات شبکه</option>
+                      <option value="صوتی">صوتی و اداری</option>
+                    </select>
+                    
+                    <button id="hesabdarLowStockBtn" onclick="toggleHesabdarLowStock(this)" class="px-4 py-2.5 rounded-2xl border border-amber-300 bg-amber-50/80 hover:bg-amber-100 text-amber-800 text-xs font-semibold flex items-center gap-1.5 transition-all">
+                      <i class="fa-solid fa-triangle-exclamation text-amber-600 text-[11px]"></i>
+                      <span id="lowStockBtnText">فقط کالاهای رو به اتمام (۲)</span>
+                    </button>
+                    
+                    <button onclick="exportHesabdarExcel('inventory')" class="px-4 py-2.5 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold shadow-sm flex items-center gap-1.5 transition-all">
+                      <i class="fa-solid fa-file-excel text-emerald-600 text-xs"></i>
+                      <span>خروجی اکسل</span>
+                    </button>
+
+                    <button onclick="openHesabdarModal('product')" class="px-4 py-2.5 rounded-2xl bg-[#176378] hover:bg-[#125061] text-white text-xs font-bold shadow-md shadow-teal-900/15 flex items-center gap-1.5 transition-all">
+                      <i class="fa-solid fa-plus text-xs"></i>
+                      <span>کالای جدید</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Realistic Inventory Table -->
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+                  <table class="w-full text-right rtl:text-right ltr:text-left text-xs">
+                    <thead class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
+                      <tr>
+                        <th class="py-3.5 px-5">کد کالا</th>
+                        <th class="py-3.5 px-5">نام کالا و مشخصات</th>
+                        <th class="py-3.5 px-5">دسته‌بندی</th>
+                        <th class="py-3.5 px-5">قیمت خرید</th>
+                        <th class="py-3.5 px-5">قیمت فروش</th>
+                        <th class="py-3.5 px-5">موجودی</th>
+                        <th class="py-3.5 px-5">وضعیت</th>
+                        <th class="py-3.5 px-5 text-center">عملیات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="hesabdarInventoryTableBody" class="divide-y divide-slate-100 text-slate-700">
+                      <!-- Item 1 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="لپ‌تاپ" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-101</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">لپ‌تاپ لنوو ThinkPad E14 Gen 4 Core i7</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">لپ‌تاپ و اولترابوک</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۳۴,۵۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۳۹,۸۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۶ دستگاه</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">موجود</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش اطلاعات کالا')" title="ویرایش کالا" class="hover:text-blue-600 ml-2 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 2 (Low stock) -->
+                      <tr class="hover:bg-amber-50/40 transition-colors bg-amber-50/20" data-category="نمایشگر" data-stock-status="low">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-102</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">مانیتور دل 27 اینچ 4K UltraSharp U2723QE</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">نمایشگر و مانیتور</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۱۹,۰۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۲۲,۵۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-amber-600">۲ عدد</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold text-[11px]">رو به اتمام</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('سفارش خرید مانیتور ثبت گردید')" title="سفارش خرید فوری" class="px-2 py-0.5 rounded-lg bg-amber-100 text-amber-800 font-bold text-[10px] ml-1.5"><i class="fa-solid fa-cart-plus ml-1"></i>شارژ</button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 3 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="قطعات" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-103</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">حافظه اس‌اس‌دی سامسونگ 980 Pro NVMe 1TB</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">قطعات و حافظه</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۴,۲۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۵,۱۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۲۴ عدد</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">مطلوب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 4 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="جانبی" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-104</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">کیبورد مکانیکی لاجیتک MX Mechanical Wireless</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">لوازم جانبی</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۶,۸۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۸,۱۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۱۲ عدد</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">مطلوب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 5 (Critical Low Stock) -->
+                      <tr class="hover:bg-rose-50/40 transition-colors bg-rose-50/20" data-category="جانبی" data-stock-status="low">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-105</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">ماوس بی‌سیم لاجیتک MX Master 3S</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">لوازم جانبی</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۴,۳۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۵,۲۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-rose-600">۱ عدد</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 font-semibold text-[11px]">کمبود بحرانی</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('سفارش شارژ ماوس ثبت گردید')" title="سفارش خرید فوری" class="px-2 py-0.5 rounded-lg bg-rose-100 text-rose-800 font-bold text-[10px] ml-1.5"><i class="fa-solid fa-cart-plus ml-1"></i>شارژ فوری</button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 6 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="شبکه" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-106</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">سوییچ شبکه سیسکو 24 پورت گیگابیت CBS250-24T</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">تجهیزات شبکه</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۱۲,۵۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۱۴,۹۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۵ دستگاه</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">مطلوب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 7 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="صوتی" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-107</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">هدست حرفه‌ای اداری جبرا Evolve2 65 Bluetooth</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">صوتی و اداری</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۸,۹۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۱۰,۶۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۸ عدد</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">مطلوب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Item 8 -->
+                      <tr class="hover:bg-slate-50 transition-colors" data-category="شبکه" data-stock-status="normal">
+                        <td class="py-3.5 px-5 font-mono text-slate-500">PRD-108</td>
+                        <td class="py-3.5 px-5 font-bold text-slate-900">روتر بی‌سیم میکروتیک hEX S گیگابیت RouterOS</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px]">تجهیزات شبکه</span></td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۳,۱۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۳,۸۵۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5 font-en font-bold text-slate-900">۱۴ دستگاه</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 font-semibold text-[11px]">مطلوب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('تاریخچه ورود و خروج کالا بارگذاری شد')" title="کاردکس کالا" class="hover:text-cyan-600 ml-2 transition-colors"><i class="fa-regular fa-clock"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 transition-colors"><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>

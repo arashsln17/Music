@@ -1,0 +1,141 @@
+/* ==========================================================================
+   3. Base Resets & Global Layout
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-surface);
+  color: var(--text-foreground);
+  font-family: var(--font-fa);
+  line-height: 1.6;
+}
+
+html[dir='ltr'],
+html[dir='ltr'] body {
+  font-family: var(--font-en);
+}
+
+html[dir='rtl'],
+html[dir='rtl'] body {
+  font-family: var(--font-fa);
+}
+
+.font-vazir,
+.font-fa {
+  font-family: var(--font-fa);
+}
+
+.font-en {
+  font-family: var(--font-en);
+}
+
+/* Section Anchor Fixed Header Offset */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Tabular numbers for clean alignment */
+.stat-num,
+.hesabdar-page-view table {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hero Stats Font Resolution: Follows Active Language */
+html[dir='rtl'] .stat-num {
+  font-family: var(--font-fa);
+}
+html[dir='ltr'] .stat-num {
+  font-family: var(--font-en);
+}
+
+/* Text balance & pretty wraps */
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.5);
+}
+
+/* Ambient Glow Orbs */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  transition: all 1s ease;
+  pointer-events: none;
+}
+
+.orb-1 {
+  top: -10%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+}
+
+.orb-2 {
+  top: 40%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+}
+
+.orb-3 {
+  bottom: 10%;
+  left: 20%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #0d9488 0%, transparent 70%);
+}
+
+html.light .glow-orb {
+  opacity: 0.12;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+html.light .grid-overlay {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}

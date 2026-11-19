@@ -1,0 +1,97 @@
+/* ==========================================================================
+   7. Hero Floating Badges & Typing Animation
+   ========================================================================== */
+
+.floating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  animation: float 4s ease-in-out infinite;
+  max-width: 250px;
+}
+
+.floating-pill-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Reserved Height Container for Typing Animation */
+.hero-typing-wrap {
+  min-height: 1.7em;
+  line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+  .hero-typing-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+  }
+  #heroTypingText {
+    display: inline;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-typing-wrap {
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #heroTypingText {
+    display: inline-block;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+
+#heroTypingText::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  background-color: #22d3ee;
+  margin-inline-start: 4px;
+  vertical-align: middle;
+  animation: cursorBlink 0.9s infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #heroTypingText::after {
+    animation: none;
+    opacity: 1;
+  }
+  .floating-pill {
+    animation: none;
+  }
+}

@@ -1,0 +1,156 @@
+<!-- HERO SECTION -->
+    <section id="hero" class="min-h-[100svh] flex items-center py-12 lg:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          <!-- Hero Text Content -->
+          <div class="lg:col-span-7 flex flex-col items-start gap-5 order-2 lg:order-1">
+            
+            <!-- Availability Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 animate-fade-in max-w-full">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span data-i18n="hero_status" class="truncate sm:whitespace-normal">آماده همکاری در پروژه‌های نرم‌افزاری</span>
+            </div>
+
+            <!-- Main Heading (Two Fixed Lines) -->
+            <div class="space-y-2 w-full">
+              <h2 class="text-xs sm:text-sm font-semibold text-cyan-400 uppercase tracking-wider" data-i18n="hero_greeting">
+                سلام و درود، من
+              </h2>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
+                <span class="gradient-text" data-i18n="hero_name">آرش صالحیان</span>
+              </h1>
+              <div class="hero-typing-wrap flex flex-col sm:flex-row sm:items-center text-base sm:text-lg lg:text-xl font-semibold text-slate-200">
+                <span class="text-cyan-400 me-2" data-i18n="hero_role_intro">مهندس نرم‌افزار</span>
+                <span class="text-muted me-2 hidden sm:inline">•</span>
+                <div class="min-h-[2.8rem] sm:min-h-0 flex items-center sm:inline-flex">
+                  <span id="heroTypingText" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 font-bold whitespace-normal sm:whitespace-nowrap break-words">توسعه‌دهنده بک‌اند</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bio Paragraph (Short, start-aligned, pretty wrapped) -->
+            <p class="text-muted text-sm sm:text-base leading-relaxed max-w-2xl text-start text-pretty" data-i18n="hero_desc">
+              علاقه‌مند به معماری سیستم‌ها، توسعه بهینه نرم‌افزار و بک‌اند. با سابقه ۴ دوره دستیاری آموزشی دروس اصلی مهندسی کامپیوتر و طراح سامانه جامع «نوین حساب».
+            </p>
+
+            <!-- Social Links (All tooltips and aria translated, email copies!) -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 pt-1 w-full">
+              <span class="text-xs text-muted font-medium shrink-0" data-i18n="hero_connect_label">راه‌های ارتباطی:</span>
+              
+              <div class="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                <!-- LinkedIn Link -->
+                <a href="https://www.linkedin.com/in/arash-salehian/" target="_blank" rel="noopener noreferrer" 
+                   class="social-icon-btn linkedin" data-i18n-aria="aria_linkedin" data-i18n-tooltip="tooltip_linkedin">
+                  <i class="fa-brands fa-linkedin-in text-sm"></i>
+                </a>
+
+                <!-- GitHub Link -->
+                <a href="https://github.com/arashsln17" target="_blank" rel="noopener noreferrer" 
+                   class="social-icon-btn github" data-i18n-aria="aria_github" data-i18n-tooltip="tooltip_github">
+                  <i class="fa-brands fa-github text-sm"></i>
+                </a>
+
+                <!-- Telegram Link -->
+                <a href="https://t.me/Arash_salehian17" target="_blank" rel="noopener noreferrer" 
+                   class="social-icon-btn telegram" data-i18n-aria="aria_telegram" data-i18n-tooltip="tooltip_telegram">
+                  <i class="fa-brands fa-telegram text-sm"></i>
+                </a>
+
+                <!-- Instagram Link -->
+                <a href="https://instagram.com/a_sln17" target="_blank" rel="noopener noreferrer" 
+                   class="social-icon-btn instagram" data-i18n-aria="aria_instagram" data-i18n-tooltip="tooltip_instagram">
+                  <i class="fa-brands fa-instagram text-sm"></i>
+                </a>
+
+                <!-- Direct Email Copy Button -->
+                <button type="button" onclick="copyToClipboard('arashsalehian17@gmail.com', 'آدرس ایمیل کپی شد!', 'Email address copied!', this)" 
+                   class="social-icon-btn email" data-i18n-aria="aria_email" data-i18n-tooltip="tooltip_email">
+                  <i class="fa-solid fa-envelope text-xs"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hero Action Buttons (Two CTAs: #projects & #contact) -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full sm:w-auto">
+              <a href="#projects" class="primary-btn w-full sm:w-auto h-12 min-h-[48px] justify-center whitespace-nowrap">
+                <i class="fa-solid fa-folder-open"></i>
+                <span data-i18n="hero_cta_projects">مشاهده پروژه‌ها</span>
+              </a>
+              <a href="#contact" class="secondary-btn w-full sm:w-auto h-12 min-h-[48px] justify-center whitespace-nowrap">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span data-i18n="hero_cta_contact">ارتباط با من</span>
+              </a>
+            </div>
+
+            <!-- Key Quick Stats -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-5 border-t border-border-subtle w-full max-w-lg">
+              <div class="stat-card">
+                <span class="stat-num" data-i18n="stat_gpa_num">۱۸.۷۴</span>
+                <span class="stat-label" data-i18n="stat_gpa">معدل کل دانشگاه (رتبه برتر)</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" data-i18n="stat_ta_num">۴ دوره</span>
+                <span class="stat-label" data-i18n="stat_ta">دستیاری آموزشی (TA)</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" data-i18n="stat_passion_num">۱۰۰٪</span>
+                <span class="stat-label" data-i18n="stat_passion">تعهد و حل مسئله</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero Image & Visual Badges -->
+          <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+            <div class="relative group">
+              <!-- Glow backdrop -->
+              <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-indigo-600 to-emerald-500 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition duration-500 pointer-events-none"></div>
+              
+              <!-- Card container -->
+              <div class="relative rounded-3xl overflow-hidden border border-border-subtle bg-card/80 backdrop-blur-sm p-3 shadow-2xl">
+                <div class="relative w-64 h-80 sm:w-72 sm:h-92 md:w-80 md:h-[400px] rounded-2xl overflow-hidden">
+                  <img src="./src/assets/images/arash-profile.jpg" alt="آرش صالحیان - Arash Salehian" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  
+                  <!-- Bottom Overlay in Card -->
+                  <div class="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 p-2.5 sm:p-3 rounded-xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 flex items-center justify-between gap-2">
+                    <div class="min-w-0 flex-1">
+                      <p class="text-xs sm:text-sm font-bold text-white truncate" data-i18n="hero_card_name">آرش صالحیان</p>
+                      <p class="text-[11px] sm:text-xs text-cyan-400 truncate" data-i18n="hero_card_sub">دانشگاه کردستان • سنندج</p>
+                    </div>
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                      <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Badge 1 (Inside card area on < sm, overhanging sm+) -->
+              <div id="heroDynamicBadge1" class="absolute -top-3.5 start-1 sm:-top-4 sm:-start-6 floating-pill shadow-xl cursor-default transition-all duration-300">
+                <div id="badge1IconWrapper" class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center transition-all duration-300 shrink-0">
+                  <i id="badge1Icon" class="fa-solid fa-sitemap text-xs"></i>
+                </div>
+                <div id="badge1TextContainer" class="floating-pill-text transition-opacity duration-300 text-start">
+                  <p id="badge1Sub" class="text-[10px] text-muted font-normal leading-tight">دستیار آموزشی (TA)</p>
+                  <p id="badge1Title" class="text-xs font-bold text-foreground leading-tight truncate">ساختمان داده‌ها</p>
+                </div>
+              </div>
+
+              <!-- Floating Badge 2 (Safely above card bottom overlay on < sm, overhanging bottom-end on sm+) -->
+              <div id="heroDynamicBadge2" class="absolute bottom-20 -end-1 sm:bottom-auto sm:-bottom-4 sm:-end-6 floating-pill shadow-xl cursor-default transition-all duration-300">
+                <div id="badge2IconWrapper" class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center transition-all duration-300 shrink-0">
+                  <i id="badge2Icon" class="fa-solid fa-calculator text-xs"></i>
+                </div>
+                <div id="badge2TextContainer" class="floating-pill-text transition-opacity duration-300 text-start">
+                  <p id="badge2Sub" class="text-[10px] text-muted font-normal leading-tight">پروژه پرچمدار</p>
+                  <p id="badge2Title" class="text-xs font-bold text-foreground leading-tight truncate">سامانه نوین حساب</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>

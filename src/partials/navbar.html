@@ -1,0 +1,143 @@
+<!-- Navigation Bar -->
+  <header class="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md bg-nav border-b border-border-subtle" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="group flex items-center gap-2 sm:gap-2.5 text-base sm:text-lg font-bold tracking-tight shrink-0 min-w-0">
+        <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform shrink-0">
+          <i class="fa-solid fa-code text-xs"></i>
+        </span>
+        <div class="flex flex-col min-w-0">
+          <span class="text-foreground group-hover:text-cyan-400 transition-colors leading-tight truncate text-sm sm:text-base font-bold" data-i18n="brand_name">آرش صالحیان</span>
+          <span class="text-[11px] text-muted font-normal hidden sm:inline leading-tight" data-i18n="brand_subtitle">دانشجوی مهندسی کامپیوتر</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu (Centered Pill Container, lg breakpoint) -->
+      <nav class="hidden lg:flex items-center nav-pill-container mx-auto">
+        <a href="#about" class="nav-link" data-i18n="nav_about">درباره من</a>
+        <a href="#experience" class="nav-link" data-i18n="nav_experience">سوابق</a>
+        <a href="#skills" class="nav-link" data-i18n="nav_skills">مهارت‌ها</a>
+        <a href="#projects" class="nav-link" data-i18n="nav_projects">پروژه‌ها</a>
+        <a href="#accounting-demo" class="nav-link text-cyan-400 font-semibold">
+          <span class="relative flex h-2 w-2 inline-flex me-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+          </span>
+          <span data-i18n="nav_demo_text">دمو زنده</span>
+        </a>
+        <a href="#contact" class="nav-link" data-i18n="nav_contact">تماس</a>
+      </nav>
+
+      <!-- Action Controls (Segmented Lang, Theme, CV Button, Mobile Toggle) -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <!-- Segmented Language Switcher (FA | EN) -->
+        <div class="lang-segmented-switch">
+          <button id="langSegFa" type="button" class="lang-seg-btn active" data-i18n-aria="aria_lang_toggle">FA</button>
+          <button id="langSegEn" type="button" class="lang-seg-btn" data-i18n-aria="aria_lang_toggle">EN</button>
+        </div>
+
+        <!-- Modern Theme Switcher -->
+        <button id="themeToggleBtn" type="button" class="control-btn group relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95" data-i18n-aria="aria_theme_toggle" data-i18n-title="aria_theme_toggle">
+          <!-- Sun Icon for Dark Mode -->
+          <span class="theme-sun-icon transition-all duration-500 transform group-hover:rotate-90 flex items-center justify-center">
+            <svg class="w-4 h-4 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.5" fill="currentColor" fill-opacity="0.3"></circle>
+              <line x1="12" y1="1.5" x2="12" y2="3.5"></line>
+              <line x1="12" y1="20.5" x2="12" y2="22.5"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1.5" y1="12" x2="3.5" y2="12"></line>
+              <line x1="20.5" y1="12" x2="22.5" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <!-- Moon Icon for Light Mode -->
+          <span class="theme-moon-icon hidden transition-all duration-500 transform group-hover:-rotate-12 flex items-center justify-center">
+            <svg class="w-4 h-4 text-cyan-600 drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              <circle cx="19" cy="5" r="1" fill="currentColor"></circle>
+            </svg>
+          </span>
+        </button>
+
+        <!-- CV Dual Download Dropdown (Compact Pill with Hover/Click Options) -->
+        <div class="relative cv-dropdown-container hidden sm:inline-block">
+          <a id="mainCvBtn" href="resume/arash-resume.pdf" download="Arash_Salehian_Resume_FA.pdf" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all shadow-sm cursor-pointer" data-i18n-aria="aria_cv_download" data-i18n-title="aria_cv_download">
+            <i class="fa-solid fa-file-arrow-down text-xs"></i>
+            <span data-i18n="btn_download_cv">رزومه</span>
+            <i class="fa-solid fa-chevron-down text-[9px] opacity-70 transition-transform duration-200"></i>
+          </a>
+          
+          <!-- Dropdown Menu for FA / EN Downloads -->
+          <div class="cv-dropdown-menu" id="cvDropdownMenu">
+            <a href="resume/arash-resume.pdf" download="Arash_Salehian_Resume_FA.pdf" target="_blank" class="cv-dropdown-item">
+              <span class="cv-lang-badge fa font-en">FA</span>
+              <span data-i18n="btn_cv_fa">رزومه فارسی (PDF)</span>
+            </a>
+            <a href="resume/arash-resume-en.pdf" download="Arash_Salehian_Resume_EN.pdf" target="_blank" class="cv-dropdown-item">
+              <span class="cv-lang-badge en font-en">EN</span>
+              <span data-i18n="btn_cv_en">رزومه انگلیسی (PDF)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" type="button" class="lg:hidden control-btn w-10 h-10 min-w-[40px] flex items-center justify-center" aria-expanded="false" data-i18n-aria="aria_menu_toggle">
+          <i class="fa-solid fa-bars-staggered text-base"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation (Full-width panel below navbar) -->
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-border-subtle bg-nav/98 backdrop-blur-2xl px-5 py-4 flex flex-col gap-1 max-h-[calc(100dvh-4rem)] overflow-y-auto shadow-2xl">
+      <a href="#about" class="mobile-nav-link" data-i18n="nav_about">
+        <i class="fa-solid fa-user-tie text-xs me-3 text-cyan-400"></i>
+        <span>درباره من</span>
+      </a>
+      <div class="h-px bg-border-subtle/50 my-0.5"></div>
+      <a href="#experience" class="mobile-nav-link" data-i18n="nav_experience">
+        <i class="fa-solid fa-briefcase text-xs me-3 text-cyan-400"></i>
+        <span>سوابق</span>
+      </a>
+      <div class="h-px bg-border-subtle/50 my-0.5"></div>
+      <a href="#skills" class="mobile-nav-link" data-i18n="nav_skills">
+        <i class="fa-solid fa-layer-group text-xs me-3 text-cyan-400"></i>
+        <span>مهارت‌ها</span>
+      </a>
+      <div class="h-px bg-border-subtle/50 my-0.5"></div>
+      <a href="#projects" class="mobile-nav-link" data-i18n="nav_projects">
+        <i class="fa-solid fa-folder-open text-xs me-3 text-cyan-400"></i>
+        <span>پروژه‌ها</span>
+      </a>
+      <div class="h-px bg-border-subtle/50 my-0.5"></div>
+      <a href="#accounting-demo" class="mobile-nav-link text-cyan-400 font-semibold">
+        <span class="relative flex h-2 w-2 inline-flex me-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        </span>
+        <span data-i18n="nav_demo_text">دمو زنده</span>
+      </a>
+      <div class="h-px bg-border-subtle/50 my-0.5"></div>
+      <a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">
+        <i class="fa-solid fa-envelope text-xs me-3 text-cyan-400"></i>
+        <span>تماس</span>
+      </a>
+      
+      <!-- Mobile Resume Dual Download Buttons (Stacked full-width, touch target >= 48px) -->
+      <div class="flex flex-col gap-2 mt-3 pt-3 border-t border-border-subtle">
+        <p class="text-xs text-muted font-medium px-1" data-i18n="aria_cv_download">دانلود رزومه:</p>
+        <a href="resume/arash-resume.pdf" download="Arash_Salehian_Resume_FA.pdf" target="_blank" class="flex items-center justify-center gap-2 h-12 min-h-[48px] px-4 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all shadow-sm">
+          <i class="fa-solid fa-file-arrow-down text-sm"></i>
+          <span data-i18n="btn_cv_fa">رزومه فارسی (PDF)</span>
+        </a>
+        <a href="resume/arash-resume-en.pdf" download="Arash_Salehian_Resume_EN.pdf" target="_blank" class="flex items-center justify-center gap-2 h-12 min-h-[48px] px-4 rounded-xl text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/20 transition-all shadow-sm">
+          <i class="fa-solid fa-file-arrow-down text-sm"></i>
+          <span data-i18n="btn_cv_en">رزومه انگلیسی (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  </header>

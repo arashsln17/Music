@@ -1,0 +1,181 @@
+<!-- PAGE 6: FINANCIAL REPORTS (EXACT RECREATION OF SCREENSHOT 214421) -->
+              <div id="hesabdarViewReports" class="hesabdar-page-view hidden space-y-6" dir="rtl">
+                <!-- Header Toolbar: Title on RIGHT, Action Buttons on LEFT -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                  <div class="flex items-center gap-2">
+                    <span id="repPeriodBadge" class="text-sm font-black text-slate-900">• عملکرد مالی و تحلیلی آبان ماه سال ۱۴۰۵</span>
+                    <span class="text-xs text-emerald-700 font-bold bg-emerald-50 border border-emerald-200/60 px-2.5 py-1 rounded-full">حاشیه سود خالص: ۱۶.۵٪</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <button onclick="exportHesabdarExcel('reports')" class="px-4 py-2 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
+                      <i class="fa-solid fa-file-excel text-emerald-600"></i> خروجی اکسل
+                    </button>
+                    <button onclick="showHesabdarToast('نسخه آماده چاپ گزارش مالی آماده شد')" class="px-4 py-2 rounded-2xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
+                      <i class="fa-solid fa-print"></i> چاپ گزارش (PDF)
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 5 Metric Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3.5">
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-[11px] text-slate-400 block mb-1">فروش کل ماه</span>
+                    <span id="repTotalSales" class="text-base font-bold text-slate-900 font-en">۲۱۹,۷۰۰,۰۰۰ تومان</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">۸ فاکتور فروش</span>
+                  </div>
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-[11px] text-slate-400 block mb-1">بهای تمام‌شده کالاها</span>
+                    <span id="repCostGoods" class="text-base font-bold text-slate-900 font-en">۱۸۶,۴۰۰,۰۰۰ تومان</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">ارزش موجودی مصرف‌شده</span>
+                  </div>
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-[11px] text-slate-400 block mb-1">سود ناخالص</span>
+                    <span id="repGrossProfit" class="text-base font-bold text-blue-600 font-en">۳۳,۳۰۰,۰۰۰ تومان</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">فروش منهای بهای کالا</span>
+                  </div>
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center">
+                    <span class="text-[11px] text-slate-400 block mb-1">هزینه‌های جاری ماه</span>
+                    <span id="repExpenses" class="text-base font-bold text-rose-500 font-en">۱۳,۷۵۸,۸۸۰ تومان</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">هزینه‌های اداری و فروش</span>
+                  </div>
+                  <div class="p-4 rounded-3xl bg-white border border-slate-200 shadow-sm text-center col-span-2 md:col-span-1">
+                    <span class="text-[11px] text-slate-400 block mb-1">سود خالص ماه</span>
+                    <span id="repNetProfit" class="text-base font-bold text-emerald-600 font-en">۱۹,۵۴۱,۱۲۰ تومان</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">سود قطعی دوره</span>
+                  </div>
+                </div>
+
+                <!-- Clean, Multi-Metric SVG Daily Report Chart -->
+                <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+                  <!-- Chart Header & Interactive Month Switcher -->
+                  <div class="flex flex-wrap items-center justify-between gap-4 text-xs">
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-blue-600"></i>
+                        <span id="repChartTitle">روند روزانه فروش ناخالص و سود خالص در طول آبان ماه</span>
+                      </h4>
+                      <p class="text-[11px] text-slate-400 mt-0.5">نمایش تغییرات روزانه گردش مالی و انطباق با موعد تسویه فاکتورها</p>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                      <!-- Month Selector Buttons -->
+                      <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 text-xs font-semibold">
+                        <button id="chartMonthBtnAban" onclick="switchReportChartMonth('aban')" class="px-3 py-1 rounded-lg bg-white text-slate-900 shadow-sm font-bold transition-all">آبان ۱۴۰۵</button>
+                        <button id="chartMonthBtnMehr" onclick="switchReportChartMonth('mehr')" class="px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition-all">مهر ۱۴۰۵</button>
+                      </div>
+
+                      <!-- Legend -->
+                      <div class="hidden sm:flex items-center gap-3 pr-2 text-[11px] text-slate-600">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-600 inline-block shadow-sm"></span> فروش ناخالص روزانه</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block shadow-sm"></span> سود خالص روزانه</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- High-Res Polished SVG Chart -->
+                  <div class="w-full pt-2 overflow-hidden">
+                    <svg id="hesabdarDailyChartSvg" viewBox="0 0 760 210" class="w-full h-56 select-none">
+                      <defs>
+                        <!-- Sales Area Gradient -->
+                        <linearGradient id="salesAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#2563eb" stop-opacity="0.32" />
+                          <stop offset="100%" stop-color="#2563eb" stop-opacity="0.01" />
+                        </linearGradient>
+                        <!-- Profit Area Gradient -->
+                        <linearGradient id="profitAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#059669" stop-opacity="0.25" />
+                          <stop offset="100%" stop-color="#059669" stop-opacity="0.01" />
+                        </linearGradient>
+                      </defs>
+
+                      <!-- Horizontal Grid Lines & Y-Axis Labels -->
+                      <g stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3 3">
+                        <line x1="60" y1="20" x2="740" y2="20" />
+                        <line x1="60" y1="58" x2="740" y2="58" />
+                        <line x1="60" y1="96" x2="740" y2="96" />
+                        <line x1="60" y1="134" x2="740" y2="134" />
+                        <line x1="60" y1="172" x2="740" y2="172" stroke="#e2e8f0" stroke-dasharray="0" />
+                      </g>
+
+                      <!-- Y-Axis Text Labels (in Millions Toman) -->
+                      <g font-size="10" fill="#94a3b8" text-anchor="end" font-family="Manrope, Estedad">
+                        <text x="50" y="24">۴۰ م</text>
+                        <text x="50" y="62">۳۰ م</text>
+                        <text x="50" y="100">۲۰ م</text>
+                        <text x="50" y="138">۱۰ م</text>
+                        <text x="50" y="176">۰</text>
+                      </g>
+
+                      <!-- Dynamic Curves Group -->
+                      <g id="chartCurvesGroup">
+                        <!-- Sales Area Fill -->
+                        <path id="chartSalesArea" d="M 60 156 C 76 155, 119 152, 154 147 C 189 142, 232 147, 271 127 C 310 107, 349 27, 388 26 C 427 25, 471 109, 506 119 C 541 129, 569 86, 600 85 C 631 84, 670 104, 693 111 C 716 118, 732 124, 740 126 L 740 172 L 60 172 Z" fill="url(#salesAreaGrad)" />
+                        
+                        <!-- Profit Area Fill -->
+                        <path id="chartProfitArea" d="M 60 168 C 76 167, 119 166, 154 164 C 189 162, 232 166, 271 157 C 310 148, 349 110, 388 109 C 427 108, 471 148, 506 153 C 541 158, 569 136, 600 136 C 631 136, 670 151, 693 155 C 716 159, 732 158, 740 159 L 740 172 L 60 172 Z" fill="url(#profitAreaGrad)" />
+
+                        <!-- Sales Stroke Line -->
+                        <path id="chartSalesLine" d="M 60 156 C 76 155, 119 152, 154 147 C 189 142, 232 147, 271 127 C 310 107, 349 27, 388 26 C 427 25, 471 109, 506 119 C 541 129, 569 86, 600 85 C 631 84, 670 104, 693 111 C 716 118, 732 124, 740 126" fill="none" stroke="#2563eb" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" />
+                        
+                        <!-- Profit Stroke Line -->
+                        <path id="chartProfitLine" d="M 60 168 C 76 167, 119 166, 154 164 C 189 162, 232 166, 271 157 C 310 148, 349 110, 388 109 C 427 108, 471 148, 506 153 C 541 158, 569 136, 600 136 C 631 136, 670 151, 693 155 C 716 159, 732 158, 740 159" fill="none" stroke="#059669" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+
+                        <!-- Peak Day 15 Pin & Marker (Accurately at Day 15 x=388) -->
+                        <g id="pinDay15">
+                          <line x1="388" y1="26" x2="388" y2="172" stroke="#2563eb" stroke-width="1.25" stroke-dasharray="2 2" opacity="0.6" />
+                          <circle cx="388" cy="26" r="5" fill="#2563eb" stroke="#ffffff" stroke-width="2.5" />
+                          <!-- Tooltip Pill -->
+                          <rect x="318" y="3" width="140" height="20" rx="10" fill="#1e293b" />
+                          <text x="388" y="16" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="Estedad">پیک فروش: ۳۸,۵۵۰,۰۰۰ تومان</text>
+                        </g>
+
+                        <!-- Today Day 24 Pin & Marker (Accurately at Day 24 x=600) -->
+                        <g id="pinDay24">
+                          <line x1="600" y1="85" x2="600" y2="172" stroke="#059669" stroke-width="1.25" stroke-dasharray="2 2" opacity="0.6" />
+                          <circle cx="600" cy="85" r="5" fill="#059669" stroke="#ffffff" stroke-width="2.5" />
+                          <!-- Tooltip Pill -->
+                          <rect x="535" y="58" width="130" height="20" rx="10" fill="#065f46" />
+                          <text x="600" y="71" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="Estedad">فروش امروز: ۲۳,۰۰۰,۰۰۰ تومان</text>
+                        </g>
+                      </g>
+
+                      <!-- X-Axis Timeline Labels (Uniformly Spaced Across 30 Days) -->
+                      <g id="chartXAxisLabels" font-size="10" fill="#64748b" text-anchor="middle" font-family="Estedad">
+                        <text x="60" y="194">۱ آبان</text>
+                        <text x="154" y="194">۵ آبان</text>
+                        <text x="271" y="194">۱۰ آبان</text>
+                        <text x="388" y="194" font-weight="bold" fill="#2563eb">۱۵ آبان (پیک)</text>
+                        <text x="506" y="194">۲۰ آبان</text>
+                        <text x="600" y="194" font-weight="bold" fill="#0f172a">۲۴ آبان (امروز)</text>
+                        <text x="693" y="194">۲۸ آبان</text>
+                        <text x="740" y="194">۳۰ آبان</text>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <!-- Chart Footnote KPI Insights -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-100 text-xs">
+                    <div class="flex items-center gap-2 p-2.5 rounded-2xl bg-slate-50">
+                      <span class="w-7 h-7 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-calculator"></i></span>
+                      <div>
+                        <span class="text-[10px] text-slate-400 block">میانگین فروش روزانه</span>
+                        <span id="kpiDailyAvg" class="font-bold text-slate-800 font-en">۷,۳۲۳,۰۰۰ تومان</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2.5 rounded-2xl bg-slate-50">
+                      <span class="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-award"></i></span>
+                      <div>
+                        <span class="text-[10px] text-slate-400 block">بیشترین فروش یک‌روزه</span>
+                        <span id="kpiPeakDay" class="font-bold text-slate-800 font-en">۳۸,۵۵۰,۰۰۰ تومان (۱۵ آبان)</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2.5 rounded-2xl bg-slate-50">
+                      <span class="w-7 h-7 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-scale-balanced"></i></span>
+                      <div>
+                        <span class="text-[10px] text-slate-400 block">شاخص پایداری نقدینگی</span>
+                        <span class="font-bold text-teal-700">وضعیت عالی (بدون کسری)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>

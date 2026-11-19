@@ -1,0 +1,78 @@
+/* ==========================================================================
+   13. Hesabdar Novin Dedicated Interactive Demo Styles
+   ========================================================================== */
+
+.hesabdar-page-view {
+  animation: slideFadeUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hesabdar-menu-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.28s ease;
+}
+
+.hesabdar-menu-tile:hover {
+  transform: translateY(-6px);
+}
+
+.hesabdar-menu-tile:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.hesabdar-tile-card {
+  width: 100%;
+  max-width: 155px;
+  aspect-ratio: 1;
+  border-radius: 2rem;
+  background: linear-gradient(155deg, #165b7e 0%, #114e5e 50%, #0e3d4a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 28px -6px rgba(14, 61, 74, 0.38);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.hesabdar-menu-tile:hover .hesabdar-tile-card {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 22px 36px -6px rgba(14, 61, 74, 0.55);
+  filter: brightness(1.12);
+}
+
+.hesabdar-tile-label {
+  margin-top: 0.85rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #0a2540;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.hesabdar-menu-tile:hover .hesabdar-tile-label {
+  color: #0e6075;
+}
+
+/* Custom Scrollbars for Demo Tables */
+.hesabdar-page-view .overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hesabdar-page-view .overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+
+.hesabdar-page-view .overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.hesabdar-page-view .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

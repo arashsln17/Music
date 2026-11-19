@@ -1,0 +1,207 @@
+/* ==========================================================================
+   19. Custom Site Cursor & Interactive Aura
+   ========================================================================== */
+
+@media (pointer: fine) {
+  /* Default Cursor in Dark Mode */
+  html,
+  body {
+    cursor:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L10.5 22L14 14L22 10.5L3 3Z' fill='%23090d16' stroke='%2306b6d4' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%2338bdf8'/%3E%3C/svg%3E")
+        3 3,
+      auto;
+  }
+
+  /* Interactive Hover State Cursor in Dark Mode */
+  a,
+  button,
+  [role='button'],
+  input[type='submit'],
+  input[type='button'],
+  select,
+  .cursor-pointer,
+  .nav-link,
+  .social-icon-btn,
+  .social-tile,
+  .primary-btn,
+  .secondary-btn,
+  .timeline-card,
+  .feature-card,
+  .surface-tile {
+    cursor:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L10.5 22L14 14L22 10.5L3 3Z' fill='%2306b6d4' stroke='%23ffffff' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%23ffffff'/%3E%3C/svg%3E")
+        3 3,
+      pointer;
+  }
+
+  /* Default Cursor in Light Mode */
+  html.light,
+  html.light body {
+    cursor:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L10.5 22L14 14L22 10.5L3 3Z' fill='%23ffffff' stroke='%230284c7' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%230284c7'/%3E%3C/svg%3E")
+        3 3,
+      auto;
+  }
+
+  /* Interactive Hover State Cursor in Light Mode */
+  html.light a,
+  html.light button,
+  html.light [role='button'],
+  html.light input[type='submit'],
+  html.light input[type='button'],
+  html.light select,
+  html.light .cursor-pointer,
+  html.light .nav-link,
+  html.light .social-icon-btn,
+  html.light .social-tile,
+  html.light .primary-btn,
+  html.light .secondary-btn,
+  html.light .timeline-card,
+  html.light .feature-card,
+  html.light .surface-tile {
+    cursor:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L10.5 22L14 14L22 10.5L3 3Z' fill='%230284c7' stroke='%23ffffff' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%23ffffff'/%3E%3C/svg%3E")
+        3 3,
+      pointer;
+  }
+
+  /* Interactive Cursor Ambient Glow (Soft, blur-diffused, 1:1 sync with mouse) */
+  .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    margin-left: -24px;
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.22) 0%,
+      rgba(56, 189, 248, 0.12) 35%,
+      rgba(99, 102, 241, 0.05) 60%,
+      transparent 75%
+    );
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition:
+      opacity 0.3s ease,
+      width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+      margin 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.2s ease,
+      filter 0.2s ease;
+    will-change: transform;
+  }
+
+  .cursor-follower.is-active {
+    opacity: 1;
+  }
+
+  .cursor-follower.is-hovering {
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    background: radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.32) 0%,
+      rgba(56, 189, 248, 0.18) 40%,
+      rgba(99, 102, 241, 0.08) 65%,
+      transparent 80%
+    );
+    filter: blur(10px);
+  }
+
+  .cursor-follower.is-clicking {
+    width: 38px;
+    height: 38px;
+    margin-top: -19px;
+    margin-left: -19px;
+    background: radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.45) 0%,
+      rgba(56, 189, 248, 0.25) 45%,
+      transparent 75%
+    );
+    filter: blur(6px);
+  }
+
+  html.light .cursor-follower {
+    background: radial-gradient(
+      circle,
+      rgba(2, 132, 199, 0.16) 0%,
+      rgba(56, 189, 248, 0.08) 40%,
+      rgba(99, 102, 241, 0.04) 65%,
+      transparent 75%
+    );
+    filter: blur(8px);
+  }
+
+  html.light .cursor-follower.is-hovering {
+    background: radial-gradient(
+      circle,
+      rgba(2, 132, 199, 0.25) 0%,
+      rgba(56, 189, 248, 0.14) 45%,
+      transparent 80%
+    );
+    filter: blur(10px);
+  }
+}
+
+@media (pointer: coarse), (hover: none) {
+  .cursor-follower {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   16. Mobile Standardization & Responsive Refinements (<768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Prevent horizontal overflow on mobile viewports */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Interactive Elements Standard Touch Target */
+  .primary-btn,
+  .secondary-btn {
+    min-height: 48px;
+    padding-inline: 1.25rem;
+  }
+
+  /* Floating Badges Compact Mobile Size */
+  .floating-pill {
+    padding: 0.45rem 0.65rem;
+    gap: 0.5rem;
+    max-width: 195px;
+    border-radius: 0.85rem;
+  }
+
+  /* Skill Group Cards Inner Padding */
+  .skill-group-card {
+    padding: 1.25rem;
+  }
+
+  /* Timeline Cards Inner Padding */
+  .timeline-card {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Smooth Touch Momentum Scrolling for Overflow Containers */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Accounting Demo Tile Refinements on Mobile */
+  .hesabdar-tile-card {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}

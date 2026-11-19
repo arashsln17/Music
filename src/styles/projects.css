@@ -1,0 +1,31 @@
+/* Project Tags & Chips */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(var(--card-rgb), 0.7);
+  border: 1px solid var(--border-color);
+  color: var(--text-foreground);
+  transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+html.light .tag-chip {
+  background: rgba(241, 245, 249, 0.8);
+  border-color: rgba(203, 213, 225, 0.8);
+  color: #1e293b;
+}
+
+html.light .tag-chip:hover {
+  background: rgba(224, 242, 254, 0.9);
+  border-color: rgba(56, 189, 248, 0.5);
+}

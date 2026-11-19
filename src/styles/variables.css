@@ -1,0 +1,64 @@
+/* ==========================================================================
+   2. Theme Variables & RGB Channels (Fix for Tailwind Opacity Modifiers)
+   ========================================================================== */
+
+:root {
+  /* RGB Channels for Tailwind /NN Opacity Utilities */
+  --surface-rgb: 9 13 22;
+  --card-rgb: 15 23 42;
+  --card-hover-rgb: 30 41 59;
+  --nav-rgb: 9 13 22;
+  --foreground-rgb: 248 250 252;
+  --muted-rgb: 148 163 184;
+  --border-rgb: 51 65 85; /* slate-700-ish dark blue-gray */
+  --border-strong-rgb: 71 85 105; /* slate-600 hover / emphasized */
+  --border-subtle-rgb: 30 41 59; /* slate-800 dividers & inner separators */
+  --accent-cyan-rgb: 6 182 212;
+  --accent-indigo-rgb: 99 102 241;
+  --accent-emerald-rgb: 16 185 129;
+
+  /* Backward Compatibility CSS Variables */
+  --bg-surface: rgb(var(--surface-rgb));
+  --bg-card: rgba(var(--card-rgb), 0.75);
+  --bg-card-hover: rgba(var(--card-hover-rgb), 0.85);
+  --bg-nav: rgba(var(--nav-rgb), 0.85);
+  --text-foreground: rgb(var(--foreground-rgb));
+  --text-muted: rgb(var(--muted-rgb));
+  --text-accent: #38bdf8;
+  --border-color: rgba(var(--border-rgb), 0.75);
+  --border-strong: rgba(var(--border-strong-rgb), 0.85);
+  --border-subtle: rgba(var(--border-subtle-rgb), 0.9);
+  --border-glow: rgba(56, 189, 248, 0.25);
+  --accent-cyan: #06b6d4;
+  --accent-indigo: #6366f1;
+  --accent-emerald: #10b981;
+
+  /* Fonts */
+  --font-fa: 'Estedad', 'Tahoma', system-ui, sans-serif;
+  --font-en: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Light Theme Variables */
+html.light {
+  --surface-rgb: 248 250 252;
+  --card-rgb: 255 255 255;
+  --card-hover-rgb: 241 245 249;
+  --nav-rgb: 248 250 252;
+  --foreground-rgb: 15 23 42;
+  --muted-rgb: 100 116 139;
+  --border-rgb: 203 213 225; /* slate-300 */
+  --border-strong-rgb: 148 163 184; /* slate-400 */
+  --border-subtle-rgb: 226 232 240; /* slate-200 */
+
+  --bg-surface: rgb(var(--surface-rgb));
+  --bg-card: rgba(var(--card-rgb), 0.95);
+  --bg-card-hover: rgba(var(--card-hover-rgb), 0.98);
+  --bg-nav: rgba(var(--nav-rgb), 0.9);
+  --text-foreground: rgb(var(--foreground-rgb));
+  --text-muted: rgb(var(--muted-rgb));
+  --text-accent: #0284c7;
+  --border-color: rgba(var(--border-rgb), 0.75);
+  --border-strong: rgba(var(--border-strong-rgb), 0.85);
+  --border-subtle: rgba(var(--border-subtle-rgb), 0.9);
+  --border-glow: rgba(2, 132, 199, 0.2);
+}

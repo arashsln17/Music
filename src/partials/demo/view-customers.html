@@ -1,0 +1,186 @@
+<!-- PAGE 4: CUSTOMERS -->
+              <div id="hesabdarViewCustomers" class="hesabdar-page-view hidden space-y-6" dir="rtl">
+                <!-- 3 Top Cards (RTL: Total Contacts, Outstanding Debt, Customer Credit) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                  <!-- Right: Total Contacts -->
+                  <div class="p-5 rounded-3xl bg-blue-50/70 border border-blue-100 flex items-center justify-between shadow-sm">
+                    <div class="text-right">
+                      <span class="text-xs text-slate-500 block">تعداد کل مخاطبان فعال</span>
+                      <span id="custTotalCount" class="text-xl font-bold text-slate-900 font-en">۸ مشتری</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500 text-white flex items-center justify-center text-lg shadow-md shadow-blue-500/20">
+                      <i class="fa-solid fa-users"></i>
+                    </div>
+                  </div>
+
+                  <!-- Center: Outstanding Debt -->
+                  <div class="p-5 rounded-3xl bg-amber-50/70 border border-amber-100 flex items-center justify-between shadow-sm">
+                    <div class="text-right">
+                      <span class="text-xs text-slate-500 block">مجموع مطالبات (بدهکاران به ما)</span>
+                      <span class="text-xl font-bold text-amber-600 font-en">۷۷,۱۵۰,۰۰۰ تومان</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-lg shadow-md shadow-amber-500/20">
+                      <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                  </div>
+
+                  <!-- Left: Customer Credit -->
+                  <div class="p-5 rounded-3xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between shadow-sm">
+                    <div class="text-right">
+                      <span class="text-xs text-slate-500 block">مجموع بستانکاری (پیش‌پرداخت مشتریان)</span>
+                      <span class="text-xl font-bold text-emerald-600 font-en">۱,۲۰۰,۰۰۰ تومان</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-lg shadow-md shadow-emerald-500/20">
+                      <i class="fa-solid fa-wallet"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Toolbar: Search on RIGHT, Interactive Buttons on LEFT -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <!-- RIGHT: Search Bar -->
+                  <div class="relative w-full sm:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    <input type="text" id="customerSearchInput" onkeyup="filterHesabdarTable('hesabdarCustomerTableBody', this.value)" placeholder="جستجو در نام، شماره موبایل، کد یا وضعیت..." class="w-full bg-white border border-slate-200 rounded-2xl py-2.5 pr-9 pl-4 text-xs text-slate-700 shadow-sm focus:outline-none focus:border-cyan-500 text-right">
+                  </div>
+
+                  <!-- LEFT: Action Buttons -->
+                  <div class="flex items-center gap-3">
+                    <button onclick="exportHesabdarExcel('customers')" class="px-4 py-2.5 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold shadow-sm flex items-center gap-1.5 transition-all">
+                      <i class="fa-solid fa-file-excel text-emerald-600 text-xs"></i>
+                      <span>خروجی اکسل</span>
+                    </button>
+                    <button onclick="openHesabdarModal('customer')" class="px-5 py-2.5 rounded-2xl bg-[#176378] hover:bg-[#125061] text-white text-xs font-bold shadow-md shadow-teal-900/15 flex items-center gap-2 transition-all">
+                      <i class="fa-solid fa-plus text-xs"></i>
+                      <span>ثبت مشتری جدید</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Realistic Rich Customers Table -->
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+                  <table class="w-full text-right rtl:text-right ltr:text-left text-xs">
+                    <thead class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
+                      <tr>
+                        <th class="py-3.5 px-5">نام مشتری / شرکت</th>
+                        <th class="py-3.5 px-5">شماره تماس</th>
+                        <th class="py-3.5 px-5">کد ملی / اقتصادی</th>
+                        <th class="py-3.5 px-5">تعداد فاکتورها</th>
+                        <th class="py-3.5 px-5">مانده حساب (تومان)</th>
+                        <th class="py-3.5 px-5">وضعیت</th>
+                        <th class="py-3.5 px-5 text-center">عملیات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="hesabdarCustomerTableBody" class="divide-y divide-slate-100 text-slate-700">
+                      <!-- Customer 1 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">شرکت توسعه بازرگانی البرز پویا</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۲۱-۸۸۶۵۴۳۲۱</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۴۱۱۵۲۹۳۸۴۰</td>
+                        <td class="py-3.5 px-5">۱۲ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-amber-600">۴۵,۲۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold text-[11px]">بدهکار به ما</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('فرم دریافت وجه ثبت گردید')" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-solid fa-hand-holding-dollar ml-1"></i>دریافت</button>
+                          <button onclick="showHesabdarToast('پیامک یادآوری ارسال شد')" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-regular fa-bell ml-1"></i>یادآوری</button>
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 2 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">مهندس کیوان مرادی</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۹۱۲-۸۳۱۴۹۰۲</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۰۰۲۵۸۴۹۱۷۳</td>
+                        <td class="py-3.5 px-5">۵ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-amber-600">۸,۴۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold text-[11px]">بدهکار به ما</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('فرم دریافت وجه ثبت گردید')" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-solid fa-hand-holding-dollar ml-1"></i>دریافت</button>
+                          <button onclick="showHesabdarToast('پیامک یادآوری تسویه ارسال شد')" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-regular fa-bell ml-1"></i>یادآوری</button>
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 3 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">فروشگاه سخت‌افزار پیشگامان غرب</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۲۱-۶۶۳۹۵۵۴۱</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۱۰۱۰۲۹۴۸۱۵</td>
+                        <td class="py-3.5 px-5">۸ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-amber-600">۱۹,۷۵۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold text-[11px]">بدهکار به ما</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('فرم دریافت وجه باز شد')" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-solid fa-hand-holding-dollar ml-1"></i>دریافت</button>
+                          <button onclick="showHesabdarToast('پیامک یادآوری ارسال شد')" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-regular fa-bell ml-1"></i>یادآوری</button>
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 4 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">سرکار خانم مریم صادقی</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۹۱۹-۴۷۲۸۵۱۶</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۳۸۷۲۹۱۴۰۵۶</td>
+                        <td class="py-3.5 px-5">۴ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-slate-900">۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-semibold text-[11px]">تسویه حساب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش اطلاعات')" title="ویرایش" class="hover:text-blue-600 mx-1"><i class="fa-regular fa-pen-to-square text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 5 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">آقای بهزاد نوروزی</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۹۳۵-۶۱۸۲۹۳۴</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۲۷۴۰۱۸۵۹۲۳</td>
+                        <td class="py-3.5 px-5">۲ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-amber-600">۳,۸۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-semibold text-[11px]">بدهکار به ما</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('فرم دریافت وجه باز شد')" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-solid fa-hand-holding-dollar ml-1"></i>دریافت</button>
+                          <button onclick="showHesabdarToast('پیامک یادآوری ارسال شد')" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 text-[10px] ml-1 font-bold transition-colors"><i class="fa-regular fa-bell ml-1"></i>یادآوری</button>
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 6 (Creditor / Advance payment) -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">گروه فناوری پردازش هوشمند سپهر</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۲۱-۲۶۴۰۱۸۹۲</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۱۰۳۲۰۸۵۹۱۴</td>
+                        <td class="py-3.5 px-5">۷ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-emerald-600">۱,۲۰۰,۰۰۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-semibold text-[11px]">بستانکار (پیش‌پرداخت)</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 mx-1"><i class="fa-regular fa-pen-to-square text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 7 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">سرکار خانم فرزانه اسدی</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۹۹۰-۵۲۳۶۱۸۴</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۳۹۶۰۴۱۸۲۷۵</td>
+                        <td class="py-3.5 px-5">۳ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-slate-900">۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-semibold text-[11px]">تسویه حساب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 mx-1"><i class="fa-regular fa-pen-to-square text-xs"></i></button>
+                        </td>
+                      </tr>
+                      <!-- Customer 8 -->
+                      <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-bold text-slate-900">آقای کامران حیدری</td>
+                        <td class="py-3.5 px-5 font-en text-slate-600">۰۹۳۸-۹۴۱۵۲۷۰</td>
+                        <td class="py-3.5 px-5 font-mono text-slate-600">۰۰۸۲۷۳۹۱۴۵</td>
+                        <td class="py-3.5 px-5">۶ فاکتور</td>
+                        <td class="py-3.5 px-5 font-bold font-en text-slate-900">۰ تومان</td>
+                        <td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-semibold text-[11px]">تسویه حساب</span></td>
+                        <td class="py-3.5 px-5 text-center text-slate-400">
+                          <button onclick="showHesabdarToast('گردش حساب مشتری بارگذاری شد')" title="گردش حساب" class="hover:text-slate-800 mx-1"><i class="fa-regular fa-file-lines text-xs"></i></button>
+                          <button onclick="showHesabdarToast('ویرایش مشخصات')" title="ویرایش" class="hover:text-blue-600 mx-1"><i class="fa-regular fa-pen-to-square text-xs"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
